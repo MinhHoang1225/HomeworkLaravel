@@ -28,7 +28,7 @@ form {
 .form-group {
     margin-bottom: 15px;
     display: grid;
-    grid-template-columns: 70px 208px;
+    grid-template-columns: 70px 208gpx;
 }
 
 label {
