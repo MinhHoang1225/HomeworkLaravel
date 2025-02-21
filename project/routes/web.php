@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CalculatorController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\InformationController;
+use App\Http\Controllers\CovidController;
+
 
 
 
@@ -17,5 +19,7 @@ Route::post('/calculate-sum', [CalculatorController::class, 'calculateSum'])->na
 
 Route::get('/index', [PostController::class, 'index']);
 
-Route::get('/formInfo', [InformationController::class, 'ifForm'])->name('form.info');
-Route::post('/formInfo', [InformationController::class, 'displayInfor'])->name('display.infor');
+Route::get('/form', [InformationController::class, 'ifForm'])->name('ifForm');
+Route::post('/form', [InformationController::class, 'displayInfor'])->name('displayInfor');
+
+Route::get('/covid', [CovidController::class, 'getData']);
