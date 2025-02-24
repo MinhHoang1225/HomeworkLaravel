@@ -5,6 +5,8 @@ use App\Http\Controllers\CalculatorController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\InformationController;
 use App\Http\Controllers\CovidController;
+use App\Http\Controllers\ProductController;				
+Route::resource('products', ProductController::class);										
 
 
 
