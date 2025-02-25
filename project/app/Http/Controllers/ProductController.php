@@ -28,12 +28,20 @@ class ProductController extends Controller
     // Lưu sản phẩm mới
     public function store(Request $request)
     {
-        $response = Http::post($this->apiUrl, ['name' => $request->name]);
+        $response = Http::post($this->apiUrl, [
+            'name' => $request->name,
+            'avatar' => $request -> avatar,
+            'description' => $request->description, // Thêm mô tả
+            'price' => $request->price, // Thêm giá
+            'quantity' => $request->quantity // Thêm số lượng
+        ]);
+    
         if ($response->successful()) {
             return redirect()->route('products.index')->with('success', 'Thêm sản phẩm thành công');
         }
         return back()->withErrors(['message' => 'Không thể thêm sản phẩm']);
     }
+    
 
     // Hiển thị form chỉnh sửa
     public function edit($id)
@@ -49,7 +57,13 @@ class ProductController extends Controller
     // Cập nhật sản phẩm
     public function update(Request $request, $id)
     {
-        $response = Http::put("{$this->apiUrl}/{$id}", ['name' => $request->name]);
+        $response = Http::put("{$this->apiUrl}/{$id}", [
+            'name' => $request->name,
+            'avatar' => $request -> avatar,
+            'description' => $request -> description,
+            'price' => $request -> price,
+            'quantity' => $request -> quantity,
+        ]); 
         if ($response->successful()) {
             return redirect()->route('products.index')->with('success', 'Cập nhật sản phẩm thành công');
         }

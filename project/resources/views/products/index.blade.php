@@ -19,26 +19,57 @@
         <thead>
             <tr>
                 <th>ID</th>
-                <th>Tên</th>
-                <th>Hành động</th>
+                <th>Image</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Description</th>
+                <th>Quantity</th>
+                <th>Action</th>
             </tr>
         </thead>
         <tbody>
-            @foreach($products as $product)
-            <tr>
-                <td>{{ $product['id'] }}</td>
-                <td>{{ $product['name'] }}</td>
-                <td>
-                    <a href="{{ route('products.edit', $product['id']) }}" class="btn btn-warning btn-sm">Sửa</a>
-                    <form action="{{ route('products.destroy', $product['id']) }}" method="POST" style="display:inline;">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Xóa sản phẩm này?')">Xóa</button>
-                    </form>
-                </td>
-            </tr>
-            @endforeach
-        </tbody>
+    @foreach($products as $product)
+    <tr>
+        <td>{{ $product['id'] }}</td>
+        <td>{{ $product['name'] }}</td>
+        <td>
+            @if(isset($product['avatar']))
+                <img src="{{ $product['avatar'] }}" alt="Avatar" width="50">
+            @else
+                Không có ảnh
+            @endif
+        </td>
+
+        @isset($product['description'])
+            <td>{{ $product['description'] }}</td>
+        @else
+            <td>Không có mô tả</td>
+        @endisset
+
+        @isset($product['price'])
+            <td>{{ number_format($product['price'], 2) }} $</td>
+        @else
+            <td>0.00 $</td>
+        @endisset
+
+        @isset($product['quantity'])
+            <td>{{ $product['quantity'] }}</td>
+        @else
+            <td>0</td>
+        @endisset
+
+        <td>
+            <a href="{{ route('products.edit', $product['id']) }}" class="btn btn-warning btn-sm">Sửa</a>
+            <form action="{{ route('products.destroy', $product['id']) }}" method="POST" style="display:inline;">
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Xóa sản phẩm này?')">Xóa</button>
+            </form>
+        </td>
+    </tr>
+    @endforeach
+</tbody>
+
     </table>
 </div>
 </body>
