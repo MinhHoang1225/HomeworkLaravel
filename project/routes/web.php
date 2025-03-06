@@ -32,7 +32,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('index', [PageController::class, 'getIndex'])->name('trang-chu');
+Route::get('index', [PageController::class, 'getSlide'])->name('trang-chu');
 Route::get('products',[PageController::class, 'getProduct'])->name('san-pham');
 Route::get('typeproducts',[PageController::class, 'getTypeProduct'])->name('loai-san-pham');
 
